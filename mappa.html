@@ -45,7 +45,11 @@
             <div class="col-sm p-3 min-vh-100">
                 <div class="container">
                     <div class="mappa">
-                        <img src="img/mappa.png" alt="" class="reactive" id="immagine">
+                        <img src="img/mappa.png" alt="" class="reactive" id="immagine" usemap="#image-map">
+                        <map name="image-map">
+                            <area target="" alt="" title="" href="" coords="441,583,473,635" shape="rect"
+                                onclick="alert('diocane')">
+                        </map>
                     </div>
                     <div align="right" class="buttons">
                         <i class="bi bi-plus-square fs-1" onclick="zoomin()"></i>
@@ -75,6 +79,26 @@
         </div>
     </div>
 </body>
-<script src="script.js"></script>
+<script src="js/script.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="js/jquery.rwdImageMaps.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function (e) {
+        $('img[usemap]').rwdImageMaps();
+
+        $('area').on('click', function () {
+            alert($(this).attr('alt') + ' clicked');
+        });
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("img").on("click", function (event) {
+            var x = event.pageX - this.offsetLeft;
+            var y = event.pageY - this.offsetTop;
+            alert("X Coordinate: " + x + " Y Coordinate: " + y);
+        });
+    });
+</script>
 
 </html>

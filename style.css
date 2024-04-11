@@ -28,10 +28,10 @@
   position: relative;
   z-index: 3;
 }
-.reactive
-{
-  width: 100%;
-  height: auto;
-  position: relative;
-  z-index: -1;
-}
+img[usemap] {
+    border:0;
+    height:auto;
+    max-width:100%;
+    width:auto;
+  }
+  
