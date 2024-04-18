@@ -36,16 +36,21 @@
                         <li>
                             <a href="#" class="nav-link py-3 px-2" title="" data-bs-toggle="tooltip"
                                 data-bs-placement="right" data-bs-original-title="Us">
-                                <i class="bi-people fs-1"></i>
+                                <i class="bi-people fs-1" onclick="window.location.href='chi_siamo.html'"></i>
                             </a>
                         </li>
                     </ul>
                 </div>
             </div>
             <div class="col-sm p-3 min-vh-100">
+                <h1 class="display-4 fw-bold text-body-emphasis" align="center">Visita i
+                    nostri borghi</h1>
+                
                 <div class="container">
+                    <marquee scrollamount="12" behavior="" style="background-color: #0D6EFD; padding: 5px; margin: -6px; border-radius: 5px; color:white;" direction="">Passa il mouse sui punti di interesse, per visualizzare il paese che
+                        ti interessa e cliccalo per ottenere informazioni aggiuntive</marquee>
                     <div class="mappa">
-                        <img src="img/mappa.png" alt="" class="reactive" id="immagine" usemap="#image-map">
+                        <img src="img/mappa.png" alt="" class="reactive map" id="immagine" usemap="#image-map">
                         <map name="image-map">
                             <area target="" alt="Melito di Porto Salvo" title="Melito di Porto Salvo" href=""
                                 coords="439,583,475,636" shape="rect">
@@ -64,9 +69,10 @@
                                 coords="1315,446,1281,399" shape="rect">
                             <area target="" alt="Palizzi" title="Palizzi" href="" coords="971,399,1008,452"
                                 shape="rect">
-                            <area target="" alt="Bova" title="Bova" href="" coords="822,307,859,371" shape="rect">
+                            <area target="" alt="Bova" title="Bova" href="" coords="822,307,859,371" shape="rect"
+                                class="item" onclick="bova_onclick()">
                             <area target="" alt="Condofuri" title="Condofuri" href="" coords="619,282,655,337"
-                                shape="rect">
+                                shape="rect" class="item">
                             <area target="" alt="Gallicianò" title="Gallicianò" href="" coords="696,235,735,295"
                                 shape="rect">
                             <area target="" alt="San Lorenzo" title="San Lorenzo" href="" coords="553,269,588,318"
@@ -82,31 +88,49 @@
                             <area target="" alt="Ferruzzano" title="Ferruzzano" href="" coords="1240,134,1279,195"
                                 shape="rect">
                         </map>
+
                     </div>
                     <div align="right" class="buttons">
                         <i class="bi bi-plus-square fs-1" onclick="zoomin()"></i>
                         <i class="bi bi-dash-square fs-1" onclick="zoomout()"></i>
                     </div>
-                    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-                        <div class="col-md-4 d-flex align-items-center">
-                            <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
-                                <img src="img/logo_euclide_grigio.png" height="24" width="24">
-                            </a>
-                            <span class="mb-3 mb-md-0 text-body-secondary">© 2024 made by Bruno e Tommaso</span>
-                        </div>
+                    <h1 class="display-4 fw-bold text-body-emphasis" id="titolo_paese"></h1>
+                    <div>
+                        <p class="lead mb-4" id="testo_paese" style="text-align: justify;"></p>
+                        <img src="" alt="" class="responsive" id="immagine_paese">
+                    </div>
+                    <div class="footer">
+                        <footer
+                            class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+                            <div class="col-md-4 d-flex align-items-center">
+                                <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
+                                    <img src="img/logo_euclide_grigio.png" height="24" width="24">
+                                </a>
+                                <span class="mb-3 mb-md-0 text-body-secondary">© 2024 made by Bruno e Tommaso</span>
+                            </div>
 
-                        <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-                            <li class="ms-3"><a class="text-body-secondary"
-                                    href="https://www.instagram.com/iis_euclide/"><i
-                                        class="bi bi-instagram icon24"></i></a>
-                            </li>
-                            <li class="ms-3"><a class="text-body-secondary"
-                                    href="https://www.facebook.com/iiseuclide/?locale=it_IT"><i
-                                        class="bi bi-facebook icon24"></i></a>
-                            </li>
-                        </ul>
-                    </footer>
+                            <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+                                <li class="ms-3"><a class="text-body-secondary"
+                                        href="https://www.instagram.com/iis_euclide/"><i
+                                            class="bi bi-instagram icon24"></i></a>
+                                </li>
+                                <li class="ms-3"><a class="text-body-secondary"
+                                        href="https://www.facebook.com/iiseuclide/?locale=it_IT"><i
+                                            class="bi bi-facebook icon24"></i></a>
+                                </li>
+                            </ul>
+                        </footer>
+                    </div>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="message">
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="" alt="Card image cap" id="card-img">
+            <div class="card-body" id="card-body">
+                <h5 class="card-title" id="card-title"></h5>
+                <p class="card-text" id="card-text"></p>
             </div>
         </div>
     </div>
@@ -117,10 +141,27 @@
 <script type="text/javascript">
     $(document).ready(function (e) {
         $('img[usemap]').rwdImageMaps();
+    });
+    $('map[name=image-map] area').on('click', function (e) {
+        e.stopPropagation();
+        return false;
+    });
+    $(function () {
+        $('.item').hover(
+            function (evt) {
+                var title = $(this).attr('title');
+                console.log(title);
+                $(".message").css({
+                    top: evt.pageY + 5,
+                    left: evt.pageX + 5
+                }).show();
+                informazioni(title);
 
-        $('area').on('click', function () {
-            alert($(this).attr('title'));
-        });
+            },
+            function () {
+                $(".message").hide();
+            }
+        );
     });
 </script>
 
