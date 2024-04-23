@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Le tipologie di rete</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" type="image/x-icon" href="../img/icon.ico">
+  </head>
+  <body>
+    <video autoplay muted loop id="video-background">
+      <source src="../mp4/background.mp4" type="video/mp4">
+    </video>    
+    <div class="container">
+      <div class="text">
+          <h1 class="titolo">Le tipologie di rete</h1>
+          <p>Esistono diversi tipi di reti, che possono essere classificate in base alla loro dimensione, alla loro topologia, al loro scopo e alla loro tecnologia. Ecco alcune delle categorie principali:</p>
+      </div>
+  </div>
+    <button id="showMoreButton" style="position: absolute; top: 60%; right: 43%;">Le tipologie di rete</button>
+    <div id="hiddenButtons" style="display:none;">
+      <button class="pan" onclick="pan()">PAN</button>
+      <button class="lan" onclick="lan()">LAN</button>
+      <button class="man" onclick="man()">MAN</button>
+      <button class="wan" onclick="wan()">WAN</button>
+      <button class="gan" onclick="gan()">GAN</button>
+    </div>
+    <button class="home" onclick="home()" style="position: absolute; top: 90%; left: 80%";>Torna alla home</button>
+    <script src="../js/main.js"></script>
+  </body>
+</html>
