@@ -26,6 +26,7 @@
 {
   text-align: justify;
   line-height: 30px;
+  padding: 20px;
 }
 .buttons
 {
@@ -74,4 +75,106 @@ img[usemap] {
   {
     padding: 10px;
   }
-  
+
+  .popup {
+    display: none; /* La finestra è inizialmente nascosta */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+    z-index: 1000;
+    width: 70%;
+    height: 70%;
+    border-radius: 20px;
+    border-color: #1E78FD;
+    border-width: 3px;
+    max-height: 70vh; /* Altezza massima del popup */
+    overflow-y: auto; /* Abilita lo scorrimento verticale */
+    animation: fadeIn 0.5s ease; /* Animazione di apertura */
+  }
+
+  /* Animazione di apertura */
+  @keyframes fadeIn {
+      from {
+          opacity: 0;
+      }
+      to {
+          opacity: 1;
+      }
+  }
+  @keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.button {
+ appearance: button;
+ background-color: #1b67da;
+ border: solid transparent;
+ border-radius: 16px;
+ border-width: 0 0 4px;
+ box-sizing: border-box;
+ color: #FFFFFF;
+ cursor: pointer;
+ display: inline-block;
+ font-size: 15px;
+ font-weight: 700;
+ letter-spacing: .8px;
+ line-height: 20px;
+ margin: 30px;
+ outline: none;
+ overflow: visible;
+ padding: 13px 19px;
+ text-align: center;
+ text-transform: uppercase;
+ touch-action: manipulation;
+ transform: translateZ(0);
+ transition: filter .2s;
+ user-select: none;
+ -webkit-user-select: none;
+ vertical-align: middle;
+ white-space: nowrap;
+
+}
+
+.button:after {
+ background-clip: padding-box;
+ background-color: #1E78FD;
+ border: solid transparent;
+ border-radius: 16px;
+ border-width: 0 0 4px;
+ bottom: -4px;
+ content: "";
+ left: 0;
+ position: absolute;
+ right: 0;
+ top: 0;
+ z-index: -1;
+}
+
+.button:main, .button:focus {
+ user-select: auto;
+}
+
+.button:hover:not(:disabled) {
+ filter: brightness(1.1);
+}
+
+.button:disabled {
+ cursor: auto;
+}
+
+.button:active:after {
+ border-width: 0 0 0px;
+}
+
+.button:active {
+ padding-bottom: 10px;
+}

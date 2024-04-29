@@ -79,3 +79,18 @@ function zoomin() {
       });
   });
 }
+
+function openPopup(num) {
+  var popup = document.getElementById("popup" + num);
+  popup.style.display = "block";
+}
+
+// Funzione per chiudere la finestra popup
+function closePopup(num) {
+  var popup = document.getElementById("popup" + num);
+  popup.style.animation = "fadeOut 0.5s ease"; // Applica l'animazione di chiusura
+  setTimeout(function() {
+      popup.style.display = "none"; // Nasconde la finestra dopo l'animazione
+      popup.style.animation = ""; // Resetta l'animazione
+  }, 500); // Tempo dell'animazione in millisecondi (0.5 secondi)
+}
