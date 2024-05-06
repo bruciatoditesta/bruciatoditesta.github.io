@@ -23,21 +23,11 @@ function zoomin() {
     }
   }
 
-  function informazioni(paese)
+  function preview(p)
   {
-      switch (paese) {
-        case "Condofuri":
-            condofuri();
-          break;
-        case "Melito di Porto Salvo":
-            melito();
-        case "Bova":
-            bova();
-        default:
-          break;
-      }
+    titolo.innerHTML = p;
+    immagine.src = "paesi/" + p + "/" + p + ".png";
   }
-
   function condofuri()
   {
     titolo.innerHTML = "Condofuri";
@@ -59,16 +49,17 @@ function zoomin() {
     testo.innerHTML = " Bova è un comune italiano di 400 abitanti. Inserito nel circuito de: I borghi più belli d'Italia,il paese è considerato capitale della cultura greca di Calabria."
   }
 
-  function bova_onclick()
+function paesi_onclick(p)
 {
   $('html, body').animate({
     scrollTop: $(document).height()
   }, 'slow');
-  titolo_paese.innerHTML = "Bova";
-  immagine_paese.src = "img/bova.png"
+  titolo_paese.innerHTML = p;
+  immagine_paese.src = "paesi/" + p + "/" + p + ".png";
+  var url = 'paesi/' + p + '/' + p + '.txt';
     $(document).ready(function(){
       $.ajax({
-          url: 'txt/bova.txt', // Sostituisci con il percorso del tuo file
+          url: url, // Sostituisci con il percorso del tuo file
           dataType: 'text',
           success: function(data) {
               testo_paese.innerText = data;
