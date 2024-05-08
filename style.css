@@ -178,3 +178,9 @@ img[usemap] {
 .button:active {
  padding-bottom: 10px;
 }
+.rocket
+{
+  width: -1px;
+  height: 1px;
+  color:white;
+}

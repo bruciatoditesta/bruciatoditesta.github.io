@@ -81,7 +81,7 @@
                                 class="item" onclick="paesi_onclick($(this).attr('title'))">
                             <area target="" alt="Condofuri" title="Condofuri" href="" coords="619,282,655,337"
                                 shape="rect" class="item" onclick="paesi_onclick($(this).attr('title'))">
-                            <area target="" alt="Gallicianò" title="Gallicianò" href="" coords="696,235,735,295"
+                            <area target="" alt="Gallicianò" title="Galliciano" href="" coords="696,235,735,295"
                                 shape="rect" class="item" onclick="paesi_onclick($(this).attr('title'))">
                             <area target="" alt="San Lorenzo" title="San Lorenzo" href="" coords="553,269,588,318"
                                 shape="rect" class="item" onclick="paesi_onclick($(this).attr('title'))">
@@ -163,7 +163,7 @@
                 var title = $(this).attr('title');
                 console.log(title);
                 $(".message").css({
-                    top: evt.pageY + 5,
+                    top: evt.pageY - 100,
                     left: evt.pageX + 5
                 }).show();
                 preview(title);
