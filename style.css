@@ -178,6 +178,19 @@ img[usemap] {
 .button:active {
  padding-bottom: 10px;
 }
+
+.carousel
+{
+  padding: 100px;
+  max-width: 1100px;
+  max-height: 500px;
+  border-radius: 10px;
+}
+.carousel-inner
+{
+
+}
+
 .rocket
 {
   width: -1px;
