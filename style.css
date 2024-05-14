@@ -179,21 +179,15 @@ img[usemap] {
  padding-bottom: 10px;
 }
 
-.carousel
+main
 {
-  padding: 100px;
-  max-width: 1100px;
-  max-height: 500px;
-  border-radius: 10px;
+  padding-bottom: 50px;
 }
 .carousel-inner
 {
-
-}
-
-.rocket
-{
-  width: -1px;
-  height: 1px;
-  color:white;
+  height: auto;
+  width: 100%;
+  max-width: 1100px;
+  max-height: 400px;
+  border-radius: 15px;
 }
