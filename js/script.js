@@ -85,3 +85,39 @@ function closePopup(num) {
       popup.style.animation = ""; // Resetta l'animazione
   }, 500); // Tempo dell'animazione in millisecondi (0.5 secondi)
 }
+
+const btn = document.getElementById('button');
+
+document.getElementById('form')
+ .addEventListener('submit', function(event) {
+   event.preventDefault();
+
+   btn.value = 'Sending...';
+
+   const serviceID = 'default_service';
+   const templateID = 'template_2kar9ml';
+
+   emailjs.sendForm(serviceID, templateID, this)
+    .then(() => {
+      btn.value = 'Send Email';
+      alert('Sent!');
+    }, (err) => {
+      btn.value = 'Send Email';
+      alert(JSON.stringify(err));
+    });
+});
+
+function recensione()
+{
+  var recensione = document.getElementById('recensione')
+  recensione.style.display = "block";
+}
+
+window.addEventListener('click', function(e){   
+  if (document.getElementById('recensione').contains(e.target)){
+    // Clicked in box
+  } else{
+    recensione.style["box-shadow"] = "0px";
+    this.alert("diocane");
+  }
+});
