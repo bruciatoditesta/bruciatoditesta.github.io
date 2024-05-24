@@ -75,15 +75,23 @@ function openPopup(num) {
   var popup = document.getElementById("popup" + num);
   popup.style.display = "block";
 }
-
 // Funzione per chiudere la finestra popup
-function closePopup(num) {
+function closePopup(num, c = 0) {
   var popup = document.getElementById("popup" + num);
-  popup.style.animation = "fadeOut 0.5s ease"; // Applica l'animazione di chiusura
-  setTimeout(function() {
-      popup.style.display = "none"; // Nasconde la finestra dopo l'animazione
-      popup.style.animation = ""; // Resetta l'animazione
+  if(c == 0)
+  {
+    popup.style.animation = "fadeOut 0.5s ease"; // Applica l'animazione di chiusura
+    setTimeout(function() {
+      popup.style.display = "none";
+      popup.style.animation = "";
+       // Nasconde la finestra dopo l'animazione
+       // Resetta l'animazione
   }, 500); // Tempo dell'animazione in millisecondi (0.5 secondi)
+  }
+  else{
+    popup.style.display = "none";
+  }
+ 
 }
 
 const btn = document.getElementById('button');
@@ -92,32 +100,45 @@ document.getElementById('form')
  .addEventListener('submit', function(event) {
    event.preventDefault();
 
-   btn.value = 'Sending...';
+   btn.value = 'Invio...';
 
    const serviceID = 'default_service';
    const templateID = 'template_2kar9ml';
 
    emailjs.sendForm(serviceID, templateID, this)
     .then(() => {
-      btn.value = 'Send Email';
-      alert('Sent!');
+      btn.value = 'Invia email';
     }, (err) => {
-      btn.value = 'Send Email';
+      btn.value = 'Invia email';
       alert(JSON.stringify(err));
     });
 });
+function focus_recensione(e)
+{
+  var recensione = document.getElementById('recensione');
+  recensione.classList.add('open');
+    if (document.getElementById('recensione').contains(e.target)){
+      //dentro
+    } else{
+      //fuori
+      if(document.getElementById('apri_recensione').contains(e.target))
+      {
+      }
+      else
+      {
+        recensione.classList.remove('open');
+        window.removeEventListener('click', focus_recensione);   
+      }
 
+    }
+}
 function recensione()
 {
   var recensione = document.getElementById('recensione')
-  recensione.style.display = "block";
-}
 
-window.addEventListener('click', function(e){   
-  if (document.getElementById('recensione').contains(e.target)){
-    // Clicked in box
-  } else{
-    recensione.style["box-shadow"] = "0px";
-    this.alert("diocane");
-  }
-});
+  closePopup(1, 1);
+  closePopup(2,1);
+  closePopup(3,1);
+  recensione.style.display = "block";
+  window.addEventListener('click', focus_recensione);
+}

@@ -237,18 +237,35 @@ label {
   transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
-.recensione
+#recensione
 {
   background-color: white;
   position: fixed;
   z-index: 5;
-  right: 0;
+  right: -280px;
   height: 100%;
-  width: auto;
+  max-width: 280px;
+
+  transition: right 0.3s ease; /* Transizione per l'animazione slide */
+}
+#recensione.open {
+  right: 0; /* Posizione visibile del div */
   box-shadow: 0 0 0 99999px rgba(0, 0, 0, .5);
 }
 
+
 .form
 {
+  padding: 0 20px;
+}
+
+.titolo_recensione
+{
   padding: 20px;
+}
+
+.submit
+{
+  width: 100%;
+  background-color: #0D6EFD !important;
 }

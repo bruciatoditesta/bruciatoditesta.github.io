@@ -223,8 +223,7 @@
                   <span class="visually-hidden">Next</span>
                </button>
             </div>
-            Vuoi lasciare una recensione?
-            <button onclick="recensione()">Clicca qui</button>
+            <button onclick="recensione()" id="apri_recensione">Clicca qui</button>
             <div class="container">
                <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
                   <div class="col-md-4 d-flex align-items-center">
@@ -248,6 +247,13 @@
       </div>
    </div>
    <div id="recensione" class="recensione">
+      <div class="titolo_recensione" align="center">
+         <img src="img/logo_euclide.png" height="80px" width="80px">
+         <h1 style="font-size: 40px;">Recensione</h1>
+         <p>
+            Lascia una piccola recensione per migliorare il nostro sito!
+         </p>
+      </div>
       <form id="form" class="form">
          <div class="label-form">
             <input type="text" id="from_name" class="form-control input" placeholder="Nome" required="" autofocus="" name="from_name">
@@ -257,7 +263,7 @@
             <textarea type="text" id="message" class="form-control input" placeholder="Recensione" required="" autofocus="" name="message" style="height: 120px;"></textarea>
             <label for="message">Recensione</label>
           </div>
-         <button class="btn btn-primary" type="submit">Invia</button>
+         <input class="btn btn-primary submit" id="button" type="submit"></i>
        </form>
    </div>
 </body>
