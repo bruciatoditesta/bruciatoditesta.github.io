@@ -3,7 +3,7 @@
   font-size: 24px;
 }
 
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 576px) {
   .buttons {
       display: none;
   }
@@ -13,8 +13,13 @@
       max-height: 100%;
       max-width: 100%;
   }
+  .barrone
+  {
+    padding-bottom: 500px;
+  }
 }
 @media only screen and (max-width: 575px) {
+
   .mappa
   {
       overflow: scroll;
@@ -24,6 +29,18 @@
   .recensione
   {
     margin-top: 144px;
+  }
+  .chi-siamo
+  {
+    padding-top: 800px !important;
+  }
+  .home
+  {
+    padding-top: 150px !important;
+  }
+  .pagina-mappa
+  {
+    padding-top: 50px !important;
   }
 }
 .h6

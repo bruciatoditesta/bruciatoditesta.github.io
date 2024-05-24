@@ -28,26 +28,6 @@ function zoomin() {
     titolo.innerHTML = p;
     immagine.src = "paesi/" + p + "/" + p + ".png";
   }
-  function condofuri()
-  {
-    titolo.innerHTML = "Condofuri";
-    immagine.src = "img/condofuri.png";
-    testo.innerHTML = "Condofuri è un comune italiano di 4 656 abitanti. Il comune è inserito nell'area linguistico-geografica Grecanica per la presenza di una lingua parlata e scritta strettamente imparentata con il greco antico."
-  }
-  
-  function melito()
-  {
-    titolo.innerHTML = "Melito di Porto Salvo";
-    immagine.src = "img/condofuri.png";
-    testo.innerHTML = "blabla";
-  }
-
-  function bova()
-  {
-    titolo.innerHTML = "Bova";
-    immagine.src = "img/bova.png";
-    testo.innerHTML = " Bova è un comune italiano di 400 abitanti. Inserito nel circuito de: I borghi più belli d'Italia,il paese è considerato capitale della cultura greca di Calabria."
-  }
 
 function paesi_onclick(p)
 {
@@ -135,10 +115,12 @@ function focus_recensione(e)
 function recensione()
 {
   var recensione = document.getElementById('recensione')
-
-  closePopup(1, 1);
-  closePopup(2,1);
-  closePopup(3,1);
+  if(document.URL.includes("chi_siamo.html"))
+  {
+    closePopup(1, 1);
+    closePopup(2,1);
+    closePopup(3,1);
+  }
   recensione.style.display = "block";
   window.addEventListener('click', focus_recensione);
 }

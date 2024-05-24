@@ -12,6 +12,7 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="floating-labels.css">
 </head>
 
 <body>
@@ -25,7 +26,7 @@
                         <img src="img/logo_euclide.png" height="40px" width="40px">
                     </a>
                     <ul
-                        class="nav nav-pills nav-flush flex-sm-column flex-row flex-nowrap mb-auto mx-auto text-center align-items-center">
+                        class="nav nav-pills nav-flush flex-sm-column flex-row flex-nowrap mb-auto mx-auto text-center align-items-center barrone">
                         <li class="nav-item">
                             <a href="#" class="nav-link py-3 px-2" title="" data-bs-toggle="tooltip"
                                 data-bs-placement="right" data-bs-original-title="Home">
@@ -44,9 +45,13 @@
                             </a>
                         </li>
                     </ul>
+                    <div onclick="recensione()" id="apri_recensione" align="center">
+                        <i style="color: #0D6EFD" class="bi bi-send fs-1"></i>
+                        <p style="color:#0D6EFD">Recensione</p>
+                     </div>
                 </div>
             </div>
-            <div class="col-sm p-3 min-vh-100">
+            <div class="col-sm p-3 min-vh-100 home">
                 <div class="px-4 pt-5 my-5 text-center">
                     <h1 class="display-4 fw-bold text-body-emphasis">Alla scoperta dell'Area Grecanica</h1>
                     <div class="col-lg-6 mx-auto">
@@ -98,6 +103,33 @@
             </div>
         </div>
     </div>
+    <div id="recensione" class="recensione">
+        <div class="titolo_recensione" align="center">
+           <img src="img/logo_euclide.png" height="80px" width="80px">
+           <h1 style="font-size: 40px;">Recensione</h1>
+           <p>
+              Lascia una piccola recensione per migliorare il nostro sito!
+           </p>
+        </div>
+        <form id="form" class="form">
+           <div class="label-form">
+              <input type="text" id="from_name" class="form-control input" placeholder="Nome" required="" autofocus="" name="from_name">
+              <label for="from_name">Nome</label>
+            </div>
+            <div class="label-form">
+              <textarea type="text" id="message" class="form-control input" placeholder="Recensione" required="" autofocus="" name="message" style="height: 120px;"></textarea>
+              <label for="message">Recensione</label>
+            </div>
+           <input class="btn btn-primary submit" id="button" type="submit"></i>
+         </form>
+     </div>
 </body>
+<script src="js/script.js"></script>
 
+<script type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<script type="text/javascript">
+  emailjs.init('4qQL6WPCDdwOa8_Ip')
+</script>
 </html>
