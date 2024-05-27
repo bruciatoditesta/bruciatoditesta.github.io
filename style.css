@@ -312,11 +312,20 @@ body {
 
 .zoom-container {
   width: 100%;
-  overflow: hidden; /* Evita che l'immagine esca dai limiti del container */
+  overflow: scroll; /* Evita che l'immagine esca dai limiti del container */
 }
 
 #immagine, #immagine_paese {
   width: 100%;
   touch-action: manipulation; /* Consenti il pinch-to-zoom solo sull'immagine */
   transform-origin: center center;
+}
+.zoom-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.zoom-container {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
