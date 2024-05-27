@@ -291,3 +291,18 @@ label {
   width: 100%;
   background-color: #0D6EFD !important;
 }
+
+.container-fluid:hover {
+  background-size: auto 170% !important;
+}
+
+.container-fluid {
+  transition: 0.2s all;
+  background-size: auto 100% !important;
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+
+.container-fluid, .mappa {
+  pointer-events: auto;
+}
