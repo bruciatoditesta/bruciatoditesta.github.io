@@ -145,34 +145,44 @@ function recensione()
   window.addEventListener('click', focus_recensione);
 }
 
-const img = document.getElementById('immagine');
-let scale = 1;
-let startDistance = 0;
-let lastScale = 1;
+const imageElement = document.getElementById("immagine");
 
-img.addEventListener('touchstart', (event) => {
-    if (event.touches.length === 2) {
-        startDistance = getDistance(event.touches[0], event.touches[1]);
-        event.preventDefault();
-    }
-}, { passive: false });
+imageElement.addEventListener('touchstart', (event) => {
+  console.log('touchstart', event);
+});
 
-img.addEventListener('touchmove', (event) => {
-    if (event.touches.length === 2) {
-        const currentDistance = getDistance(event.touches[0], event.touches[1]);
-        scale = lastScale * (currentDistance / startDistance);
-        scale = Math.max(1, Math.min(4, scale)); // Limita lo zoom tra 1x e 4x
-        img.style.transform = `scale(${scale})`;
-        event.preventDefault();
-    }
-}, { passive: false });
+imageElement.addEventListener('touchmove', (event) => {
+  console.log('touchmove', event);
+});
 
-img.addEventListener('touchend', (event) => {
-    if (event.touches.length < 2) {
-        lastScale = scale;
-    }
-}, { passive: false });
+imageElement.addEventListener('touchend', (event) => {
+  console.log('touchend', event);
+});
 
-function getDistance(touch1, touch2) {
-    return Math.hypot(touch2.pageX - touch1.pageX, touch2.pageY - touch1.pageY);
-}
+imageElement.addEventListener('touchmove', (event) => {
+  if (event.touches.length === 2) {
+    event.preventDefault(); // Prevent page scroll
+  }
+});
+
+const distance = (event) => {
+  return Math.hypot(event.touches[0].pageX - event.touches[1].pageX, event.touches[0].pageY - event.touches[1].pageY);
+};
+
+imageElement.addEventListener('touchstart', (event) => {
+  if (event.touches.length === 2) {
+    event.preventDefault(); // Prevent page scroll
+
+    // Calculate where the fingers have started on the X and Y axis
+    start.x = (event.touches[0].pageX + event.touches[1].pageX) / 2;
+    start.y = (event.touches[0].pageY + event.touches[1].pageY) / 2;
+    start.distance = distance(event);
+  }
+});
+
+imageElement.addEventListener('touchend', (event) => {
+  // Reset image to it's original format
+  imageElement.style.transform = "";
+  imageElement.style.WebkitTransform = "";
+  imageElement.style.zIndex = "";
+});	
