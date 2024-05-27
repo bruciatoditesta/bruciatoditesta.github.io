@@ -31,10 +31,12 @@ function zoomin() {
 
 function paesi_onclick(p)
 {
+  immagine_paese.style.display = "block";
   titolo_paese.innerHTML = p;
   immagine_paese.src = "paesi/" + p + "/" + p + ".png";
   document.getElementById('back-to-map').style.display = 'block';
   document.getElementById("container-mappa").style.display = "none";
+
   var url = 'paesi/' + p + '/' + p + '.txt';
     $(document).ready(function(){
       $.ajax({

@@ -17,6 +17,14 @@
   {
     padding-bottom: 500px;
   }
+  .responsive
+  {
+    height: 100%;
+    width: auto;
+    max-width: 600px;
+    max-height: 450px;
+    border-radius: 15px;
+  }
 }
 @media only screen and (max-width: 575px) {
 
@@ -47,6 +55,19 @@
     max-width: 200px !important;
     max-height: 250px !important;
   }
+  .responsive
+  {
+    height: 100%;
+    width: auto;
+    max-width: 300px;
+    max-height: 400px;
+    border-radius: 15px;
+  }
+  .testo-paese
+  {
+    font-size: 15px !important;
+  }
+
 }
 .h6
 {
@@ -81,14 +102,7 @@ img[usemap] {
     padding: 15px; 
     border-radius: 15px;
   }
-  .responsive
-  {
-    height: 100%;
-    width: auto;
-    max-width: 600px;
-    max-height: 450px;
-    border-radius: 15px;
-  }
+
   .testi
   {
     display: flex;
@@ -301,7 +315,7 @@ body {
   overflow: hidden; /* Evita che l'immagine esca dai limiti del container */
 }
 
-#immagine {
+#immagine, #immagine_paese {
   width: 100%;
   touch-action: manipulation; /* Consenti il pinch-to-zoom solo sull'immagine */
   transform-origin: center center;
