@@ -145,44 +145,14 @@ function recensione()
   window.addEventListener('click', focus_recensione);
 }
 
-const imageElement = document.getElementById("immagine");
+document.addEventListener('DOMContentLoaded', function () {
+  const image = document.getElementById('immagine');
 
-imageElement.addEventListener('touchstart', (event) => {
-  console.log('touchstart', event);
+  image.addEventListener('click', function () {
+      if (image.classList.contains('zoomed')) {
+          image.classList.remove('zoomed');
+      } else {
+          image.classList.add('zoomed');
+      }
+  });
 });
-
-imageElement.addEventListener('touchmove', (event) => {
-  console.log('touchmove', event);
-});
-
-imageElement.addEventListener('touchend', (event) => {
-  console.log('touchend', event);
-});
-
-imageElement.addEventListener('touchmove', (event) => {
-  if (event.touches.length === 2) {
-    event.preventDefault(); // Prevent page scroll
-  }
-});
-
-const distance = (event) => {
-  return Math.hypot(event.touches[0].pageX - event.touches[1].pageX, event.touches[0].pageY - event.touches[1].pageY);
-};
-
-imageElement.addEventListener('touchstart', (event) => {
-  if (event.touches.length === 2) {
-    event.preventDefault(); // Prevent page scroll
-
-    // Calculate where the fingers have started on the X and Y axis
-    start.x = (event.touches[0].pageX + event.touches[1].pageX) / 2;
-    start.y = (event.touches[0].pageY + event.touches[1].pageY) / 2;
-    start.distance = distance(event);
-  }
-});
-
-imageElement.addEventListener('touchend', (event) => {
-  // Reset image to it's original format
-  imageElement.style.transform = "";
-  imageElement.style.WebkitTransform = "";
-  imageElement.style.zIndex = "";
-});	
