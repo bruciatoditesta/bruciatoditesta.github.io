@@ -196,7 +196,9 @@
         return false;
     });
     $(function () {
-        $('.item').hover( 
+        if(innerWidth > 575)
+        {
+            $('.item').hover( 
             function (evt) {
                 var title = $(this).attr('title');
                 console.log(title);
@@ -214,14 +216,14 @@
                     left: evt.pageX + 5
                 }).show();
                 }
-
                 preview(title);
-
             },
             function () {
                 $(".message").hide();
             }
         );
+        }
+       
     });
 </script>
 
