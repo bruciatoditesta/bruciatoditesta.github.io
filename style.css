@@ -307,7 +307,7 @@ label {
 }
 
 body {
-  touch-action: auto; /* Consenti il normale comportamento del tocco sulla pagina */
+  touch-action: auto; /* Consente lo scrolling sulla pagina */
 }
 
 .zoom-container {

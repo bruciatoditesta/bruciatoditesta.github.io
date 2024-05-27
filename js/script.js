@@ -145,7 +145,7 @@ function recensione()
   window.addEventListener('click', focus_recensione);
 }
 
-const img = document.getElementById('zoom-image');
+const img = document.getElementById('immagine');
 let scale = 1;
 let startDistance = 0;
 let isZooming = false;
