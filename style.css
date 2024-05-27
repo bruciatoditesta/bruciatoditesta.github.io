@@ -307,7 +307,7 @@ label {
 }
 
 body {
-  touch-action: none; /* Disabilita il pinch-to-zoom su tutta la pagina */
+  touch-action: manipulation; /* Consenti lo scroll nella pagina */
 }
 
 .zoom-container {
@@ -317,7 +317,7 @@ body {
 
 #immagine, #immagine_paese {
   width: 100%;
-  touch-action: manipulation; /* Consenti il pinch-to-zoom solo sull'immagine */
+  touch-action: none; /* Disabilita il pinch-to-zoom predefinito sull'immagine */
   transform-origin: center center;
 }
 .zoom-container::-webkit-scrollbar {

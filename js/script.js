@@ -145,10 +145,9 @@ function recensione()
   window.addEventListener('click', focus_recensione);
 }
 
-const img = document.getElementById('immagine');
+const img = document.getElementById('zoom-image');
 let scale = 1;
 let startDistance = 0;
-let lastTouchEnd = 0;
 
 img.addEventListener('touchstart', (event) => {
     if (event.touches.length === 2) {
@@ -166,14 +165,6 @@ img.addEventListener('touchmove', (event) => {
         startDistance = currentDistance;
     }
 }, { passive: false });
-
-document.body.addEventListener('touchend', (event) => {
-    const now = new Date().getTime();
-    if (now - lastTouchEnd <= 300) {
-        event.preventDefault(); // Previene il doppio tap per zoomare
-    }
-    lastTouchEnd = now;
-}, false);
 
 function getDistance(touch1, touch2) {
     return Math.hypot(touch2.pageX - touch1.pageX, touch2.pageY - touch1.pageY);
