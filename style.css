@@ -307,25 +307,25 @@ label {
 }
 
 body {
-  touch-action: manipulation; /* Consenti lo scroll nella pagina */
+  touch-action: auto; /* Consenti il normale comportamento del tocco sulla pagina */
 }
 
 .zoom-container {
   width: 100%;
-  overflow: scroll; /* Evita che l'immagine esca dai limiti del container */
+  overflow: hidden; /* Evita che l'immagine esca dai limiti del container */
+  touch-action: none; /* Disabilita il pinch-to-zoom predefinito sul contenitore dell'immagine */
 }
 
-#immagine, #immagine_paese {
+#immagine {
   width: 100%;
-  touch-action: none; /* Disabilita il pinch-to-zoom predefinito sull'immagine */
   transform-origin: center center;
 }
-.zoom-container::-webkit-scrollbar {
+/*zoom-container::-webkit-scrollbar {
   display: none;
 }
 
-/* Hide scrollbar for IE, Edge and Firefox */
+/* Hide scrollbar for IE, Edge and Firefox 
 .zoom-container {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
-}
+  -ms-overflow-style: none;  /* IE and Edge 
+  scrollbar-width: none;  /* Firefox 
+}*/
