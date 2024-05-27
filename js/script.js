@@ -8,16 +8,16 @@ var immagine_paese = document.getElementById('immagine_paese');
 function zoomin() {
     var myImg = document.getElementById("immagine");
     var currWidth = myImg.clientWidth;
-    if (currWidth == 2500 ) return false;
-    else {
+    //if (currWidth == 2500 ) return false;
+    //else {
       myImg.style.width = (currWidth + 100) + "px";
-    }
+    //}
   }
   
   function zoomout() {
     var myImg = document.getElementById("immagine");
     var currWidth = myImg.clientWidth;
-    if (currWidth == 100) return false;
+    if (currWidth < 1000) return false;
     else {
       myImg.style.width = (currWidth - 100) + "px";
     }
@@ -31,11 +31,10 @@ function zoomin() {
 
 function paesi_onclick(p)
 {
-  $('html, body').animate({
-    scrollTop: $(document).height()
-  }, 'slow');
   titolo_paese.innerHTML = p;
   immagine_paese.src = "paesi/" + p + "/" + p + ".png";
+  document.getElementById('back-to-map').style.display = 'block';
+  document.getElementById("container-mappa").style.display = "none";
   var url = 'paesi/' + p + '/' + p + '.txt';
     $(document).ready(function(){
       $.ajax({
@@ -49,7 +48,26 @@ function paesi_onclick(p)
           }
       });
   });
+  document.querySelector('#testo-paese').scrollIntoView({
+    behavior: 'smooth'
+});
 }
+
+function backToMap() {
+  // Mostra la mappa principale
+  // Nascondi i dettagli del paese
+  document.getElementById("container-mappa").style.display = "block";
+  document.getElementById('titolo_paese').innerText = '';
+  document.getElementById('testo_paese').innerText = '';
+  document.getElementById('immagine_paese').src = '';
+  
+  // Nascondi il pulsante "Torna alla Mappa"
+  document.querySelector('#container-mappa').scrollIntoView({
+    behavior: 'smooth'
+});
+  document.getElementById('back-to-map').style.display = 'none';
+}
+
 
 function openPopup(num) {
   var popup = document.getElementById("popup" + num);
