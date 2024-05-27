@@ -292,17 +292,17 @@ label {
   background-color: #0D6EFD !important;
 }
 
-.container-fluid:hover {
-  background-size: auto 170% !important;
+body {
+  touch-action: none; /* Disabilita il pinch-to-zoom su tutta la pagina */
 }
 
-.container-fluid {
-  transition: 0.2s all;
-  background-size: auto 100% !important;
-  background-repeat: no-repeat;
-  pointer-events: none;
+.zoom-container {
+  width: 100%;
+  overflow: hidden; /* Evita che l'immagine esca dai limiti del container */
 }
 
-.container-fluid, .mappa {
-  pointer-events: auto;
+#immagine {
+  width: 100%;
+  touch-action: manipulation; /* Consenti il pinch-to-zoom solo sull'immagine */
+  transform-origin: center center;
 }
