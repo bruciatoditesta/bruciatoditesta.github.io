@@ -148,29 +148,28 @@ function recensione()
 const img = document.getElementById('immagine');
 let scale = 1;
 let startDistance = 0;
-let isZooming = false;
+let lastScale = 1;
 
 img.addEventListener('touchstart', (event) => {
     if (event.touches.length === 2) {
-        event.preventDefault();
         startDistance = getDistance(event.touches[0], event.touches[1]);
-        isZooming = true;
+        event.preventDefault();
     }
 }, { passive: false });
 
 img.addEventListener('touchmove', (event) => {
-    if (isZooming && event.touches.length === 2) {
-        event.preventDefault();
+    if (event.touches.length === 2) {
         const currentDistance = getDistance(event.touches[0], event.touches[1]);
-        scale = Math.max(1, Math.min(4, scale * (currentDistance / startDistance))); // Limita lo zoom tra 1x e 4x
+        scale = lastScale * (currentDistance / startDistance);
+        scale = Math.max(1, Math.min(4, scale)); // Limita lo zoom tra 1x e 4x
         img.style.transform = `scale(${scale})`;
-        startDistance = currentDistance;
+        event.preventDefault();
     }
 }, { passive: false });
 
 img.addEventListener('touchend', (event) => {
     if (event.touches.length < 2) {
-        isZooming = false;
+        lastScale = scale;
     }
 }, { passive: false });
 

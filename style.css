@@ -307,18 +307,19 @@ label {
 }
 
 body {
-  touch-action: auto; /* Consente lo scrolling sulla pagina */
+  touch-action: auto; /* Consente il normale comportamento del tocco sulla pagina */
 }
 
 .zoom-container {
   width: 100%;
   overflow: hidden; /* Evita che l'immagine esca dai limiti del container */
-  touch-action: none; /* Disabilita il pinch-to-zoom predefinito sul contenitore dell'immagine */
 }
 
 #immagine {
   width: 100%;
+  touch-action: none; /* Disabilita il pinch-to-zoom predefinito sull'immagine */
   transform-origin: center center;
+  transition: transform 0.2s; /* Aggiunge una transizione per un effetto più fluido */
 }
 /*zoom-container::-webkit-scrollbar {
   display: none;
