@@ -50,9 +50,6 @@ function paesi_onclick(p)
           }
       });
   });
-  document.querySelector('#testo-paese').scrollIntoView({
-    behavior: 'smooth'
-});
 }
 
 function backToMap() {
