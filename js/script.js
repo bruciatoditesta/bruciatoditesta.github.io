@@ -59,12 +59,8 @@ function backToMap() {
   document.getElementById('titolo_paese').innerText = '';
   document.getElementById('testo_paese').innerText = '';
   document.getElementById('immagine_paese').src = '';
-  
-  // Nascondi il pulsante "Torna alla Mappa"
-  document.querySelector('#container-mappa').scrollIntoView({
-    behavior: 'smooth'
-});
   document.getElementById('back-to-map').style.display = 'none';
+  immagine_paese.style.display = "none";
 }
 
 

@@ -3,6 +3,17 @@
   font-size: 24px;
 }
 
+
+.paese-info
+{
+  position: absolute;
+  top: 10%;
+}
+
+.container-fluid
+{
+
+}
 @media only screen and (min-width: 576px) {
   .buttons {
       display: none;
@@ -38,17 +49,13 @@
   {
     margin-top: 144px;
   }
-  .chi-siamo
-  {
-    padding-top: 855px !important;
-  }
   .home
   {
-    padding-top: 175px !important;
+    padding-top: 100px !important;
   }
   .pagina-mappa
   {
-    padding-top: 90px !important;
+    padding-top: 120px !important;
   }
   .card
   {
