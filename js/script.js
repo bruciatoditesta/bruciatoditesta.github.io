@@ -145,6 +145,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
   const img = document.getElementById('immagine');
   let initialDistance = 0;
   let currentScale = 1;
+  let startX = 0;
+  let startY = 0;
+  let translateX = 0;
+  let translateY = 0;
+  let panning = false;
 
   function getDistance(touches) {
       const [touch1, touch2] = touches;
@@ -156,6 +161,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
   img.addEventListener('touchstart', (e) => {
       if (e.touches.length === 2) {
           initialDistance = getDistance(e.touches);
+      } else if (e.touches.length === 1) {
+          panning = true;
+          startX = e.touches[0].clientX - translateX;
+          startY = e.touches[0].clientY - translateY;
+          img.style.cursor = 'grabbing';
       }
   });
 
@@ -167,7 +177,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
           const scaleChange = currentDistance / initialDistance;
           currentScale = Math.min(Math.max(1, scaleChange), 3); // Limita lo zoom tra 1x e 3x
 
-          img.style.transform = `scale(${currentScale})`;
+          img.style.transform = `scale(${currentScale}) translate(${translateX}px, ${translateY}px)`;
+      } else if (e.touches.length === 1 && panning) {
+          translateX = e.touches[0].clientX - startX;
+          translateY = e.touches[0].clientY - startY;
+
+          img.style.transform = `scale(${currentScale}) translate(${translateX}px, ${translateY}px)`;
       }
   });
 
@@ -175,5 +190,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
       if (e.touches.length < 2) {
           initialDistance = 0;
       }
+      if (e.touches.length === 0) {
+          panning = false;
+          img.style.cursor = 'grab';
+      }
+  });
+
+  img.addEventListener('touchcancel', (e) => {
+      panning = false;
+      img.style.cursor = 'grab';
   });
 });
