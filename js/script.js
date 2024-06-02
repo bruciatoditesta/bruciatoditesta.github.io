@@ -142,6 +142,7 @@ function recensione()
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {
+  const container = document.getElementById('zoom-container');
   const img = document.getElementById('immagine');
   let initialDistance = 0;
   let currentScale = 1;
@@ -156,6 +157,19 @@ document.addEventListener('DOMContentLoaded', (event) => {
       const dx = touch2.clientX - touch1.clientX;
       const dy = touch2.clientY - touch1.clientY;
       return Math.sqrt(dx * dx + dy * dy);
+  }
+
+  function limitTranslation() {
+      const rect = img.getBoundingClientRect();
+      const containerRect = container.getBoundingClientRect();
+
+      const minX = Math.min(0, containerRect.width - rect.width);
+      const maxX = 0;
+      const minY = Math.min(0, containerRect.height - rect.height);
+      const maxY = 0;
+
+      translateX = Math.max(minX, Math.min(translateX, maxX));
+      translateY = Math.max(minY, Math.min(translateY, maxY));
   }
 
   img.addEventListener('touchstart', (e) => {
@@ -181,6 +195,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
       } else if (e.touches.length === 1 && panning) {
           translateX = e.touches[0].clientX - startX;
           translateY = e.touches[0].clientY - startY;
+
+          limitTranslation();
 
           img.style.transform = `scale(${currentScale}) translate(${translateX}px, ${translateY}px)`;
       }
