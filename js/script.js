@@ -36,7 +36,8 @@ function paesi_onclick(p)
   immagine_paese.src = "paesi/" + p + "/" + p + ".png";
   document.getElementById('back-to-map').style.display = 'block';
   document.getElementById("container-mappa").style.display = "none";
-
+  document.getElementById("informazioni").style.display = "block";
+  document.getElementById("footer").style.display = "none";
   var url = 'paesi/' + p + '/' + p + '.txt';
     $(document).ready(function(){
       $.ajax({
@@ -60,6 +61,8 @@ function backToMap() {
   document.getElementById('testo_paese').innerText = '';
   document.getElementById('immagine_paese').src = '';
   document.getElementById('back-to-map').style.display = 'none';
+  document.getElementById("informazioni").style.display = "none";
+  document.getElementById("footer").style.display = "block";
   immagine_paese.style.display = "none";
 }
 

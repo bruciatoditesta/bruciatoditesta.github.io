@@ -9,10 +9,9 @@
   position: absolute;
   top: 10%;
 }
-
-.container-fluid
+.pagina-mappa
 {
-
+  padding-top: 10vh;
 }
 @media only screen and (min-width: 576px) {
   .buttons {
@@ -26,7 +25,7 @@
   }
   .barrone
   {
-    padding-bottom: 500px;
+
   }
   .responsive
   {
@@ -82,7 +81,16 @@
   {
     width: 100% !important;
   }
-
+  .informazioni
+  {
+    position: absolute;
+    display: none;
+    top: 10%;
+  }
+  .chi-siamo
+  {
+    padding-top: 700px;
+  }
 }
 .h6
 {
@@ -90,12 +98,7 @@
   line-height: 30px;
   padding: 20px;
 }
-.buttons
-{
-  
-  position: relative;
-  z-index: 3;
-}
+
 img[usemap] {
     border:0;
     height:auto;
@@ -319,4 +322,8 @@ label {
 {
   width: 100%;
   background-color: #0D6EFD !important;
+}
+.informazioni
+{
+  display: none;
 }
