@@ -97,7 +97,7 @@
   }
 
 }
-@media only screen and (max-height: 813px) {
+@media only screen and (max-height: 813px) and (max-width: 575px) {
   .home
   {
       padding-top: 35vh !important;
@@ -316,7 +316,7 @@ label {
 {
   background-color: white;
   position: fixed;
-  z-index: 5;
+  z-index: 999;
   right: -280px;
   height: 100%;
   max-width: 280px;
