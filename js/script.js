@@ -164,10 +164,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
       const rect = img.getBoundingClientRect();
       const containerRect = container.getBoundingClientRect();
 
-      const minX = Math.min(0, containerRect.width - rect.width);
-      const maxX = 0;
-      const minY = Math.min(0, containerRect.height - rect.height);
-      const maxY = 0;
+      const minX = Math.min(0, containerRect.width - rect.width / currentScale);
+      const maxX = Math.max(0, containerRect.width - rect.width / currentScale);
+      const minY = Math.min(0, containerRect.height - rect.height / currentScale);
+      const maxY = Math.max(0, containerRect.height - rect.height / currentScale);
 
       translateX = Math.max(minX, Math.min(translateX, maxX));
       translateY = Math.max(minY, Math.min(translateY, maxY));
@@ -189,10 +189,18 @@ document.addEventListener('DOMContentLoaded', (event) => {
               pinchToZoomActive = true;
           }
       } else if (e.touches.length === 1) {
-          panning = true;
-          startX = e.touches[0].clientX - translateX;
-          startY = e.touches[0].clientY - translateY;
-          img.style.cursor = 'grabbing';
+          const touch = e.touches[0];
+          const imgRect = img.getBoundingClientRect();
+
+          if (
+              touch.clientX >= imgRect.left && touch.clientX <= imgRect.right &&
+              touch.clientY >= imgRect.top && touch.clientY <= imgRect.bottom
+          ) {
+              panning = true;
+              startX = e.touches[0].clientX - translateX;
+              startY = e.touches[0].clientY - translateY;
+              img.style.cursor = 'grabbing';
+          }
       }
   });
 
