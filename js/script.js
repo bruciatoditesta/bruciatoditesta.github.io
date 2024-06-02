@@ -151,6 +151,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
   let translateX = 0;
   let translateY = 0;
   let panning = false;
+  let pinchToZoomActive = false;
 
   function getDistance(touches) {
       const [touch1, touch2] = touches;
@@ -174,7 +175,19 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
   img.addEventListener('touchstart', (e) => {
       if (e.touches.length === 2) {
-          initialDistance = getDistance(e.touches);
+          const touch1 = e.touches[0];
+          const touch2 = e.touches[1];
+          const imgRect = img.getBoundingClientRect();
+
+          if (
+              touch1.clientX >= imgRect.left && touch1.clientX <= imgRect.right &&
+              touch1.clientY >= imgRect.top && touch1.clientY <= imgRect.bottom &&
+              touch2.clientX >= imgRect.left && touch2.clientX <= imgRect.right &&
+              touch2.clientY >= imgRect.top && touch2.clientY <= imgRect.bottom
+          ) {
+              initialDistance = getDistance(e.touches);
+              pinchToZoomActive = true;
+          }
       } else if (e.touches.length === 1) {
           panning = true;
           startX = e.touches[0].clientX - translateX;
@@ -184,7 +197,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
   });
 
   img.addEventListener('touchmove', (e) => {
-      if (e.touches.length === 2) {
+      if (e.touches.length === 2 && pinchToZoomActive) {
           e.preventDefault(); // Previeni lo scrolling durante il pinch
 
           const currentDistance = getDistance(e.touches);
@@ -205,6 +218,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
   img.addEventListener('touchend', (e) => {
       if (e.touches.length < 2) {
           initialDistance = 0;
+          pinchToZoomActive = false;
       }
       if (e.touches.length === 0) {
           panning = false;
@@ -214,6 +228,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
   img.addEventListener('touchcancel', (e) => {
       panning = false;
+      pinchToZoomActive = false;
       img.style.cursor = 'grab';
   });
 });
