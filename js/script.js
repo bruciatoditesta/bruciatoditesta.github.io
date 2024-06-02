@@ -140,3 +140,40 @@ function recensione()
   recensione.style.display = "block";
   window.addEventListener('click', focus_recensione);
 }
+
+document.addEventListener('DOMContentLoaded', (event) => {
+  const img = document.getElementById('immagine');
+  let initialDistance = 0;
+  let currentScale = 1;
+
+  function getDistance(touches) {
+      const [touch1, touch2] = touches;
+      const dx = touch2.clientX - touch1.clientX;
+      const dy = touch2.clientY - touch1.clientY;
+      return Math.sqrt(dx * dx + dy * dy);
+  }
+
+  img.addEventListener('touchstart', (e) => {
+      if (e.touches.length === 2) {
+          initialDistance = getDistance(e.touches);
+      }
+  });
+
+  img.addEventListener('touchmove', (e) => {
+      if (e.touches.length === 2) {
+          e.preventDefault(); // Previeni lo scrolling durante il pinch
+
+          const currentDistance = getDistance(e.touches);
+          const scaleChange = currentDistance / initialDistance;
+          currentScale = Math.min(Math.max(1, scaleChange), 3); // Limita lo zoom tra 1x e 3x
+
+          img.style.transform = `scale(${currentScale})`;
+      }
+  });
+
+  img.addEventListener('touchend', (e) => {
+      if (e.touches.length < 2) {
+          initialDistance = 0;
+      }
+  });
+});
