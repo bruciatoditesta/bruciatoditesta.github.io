@@ -144,123 +144,35 @@ function recensione()
 document.addEventListener('DOMContentLoaded', (event) => {
   const container = document.getElementById('zoom-container');
   const img = document.getElementById('immagine');
-  let initialDistance = 0;
   let currentScale = 1;
-  let startX = 0;
-  let startY = 0;
   let translateX = 0;
   let translateY = 0;
-  let panning = false;
-  let pinchToZoomActive = false;
   let isZoomed = false; // Track zoom state
-  let zoomCenterX = 0;
-  let zoomCenterY = 0;
 
-  function getDistance(touches) {
-      const [touch1, touch2] = touches;
-      const dx = touch2.clientX - touch1.clientX;
-      const dy = touch2.clientY - touch1.clientY;
-      return Math.sqrt(dx * dx + dy * dy);
-  }
-
-  function limitTranslation() {
-      const rect = img.getBoundingClientRect();
-      const containerRect = container.getBoundingClientRect();
-
-      const minX = Math.min(0, containerRect.width - rect.width / currentScale);
-      const maxX = Math.max(0, containerRect.width - rect.width / currentScale);
-      const minY = Math.min(0, containerRect.height - rect.height / currentScale);
-      const maxY = Math.max(0, containerRect.height - rect.height / currentScale);
-
-      translateX = Math.max(minX, Math.min(translateX, maxX));
-      translateY = Math.max(minY, Math.min(translateY, maxY));
-  }
-
-  img.addEventListener('touchstart', (e) => {
-      if (e.touches.length === 2) {
-          const touch1 = e.touches[0];
-          const touch2 = e.touches[1];
-          const imgRect = img.getBoundingClientRect();
-
-          if (
-              touch1.clientX >= imgRect.left && touch1.clientX <= imgRect.right &&
-              touch1.clientY >= imgRect.top && touch1.clientY <= imgRect.bottom &&
-              touch2.clientX >= imgRect.left && touch2.clientX <= imgRect.right &&
-              touch2.clientY >= imgRect.top && touch2.clientY <= imgRect.bottom
-          ) {
-              initialDistance = getDistance(e.touches);
-              pinchToZoomActive = true;
-          }
-      } else if (e.touches.length === 1) {
-          const touch = e.touches[0];
-          const imgRect = img.getBoundingClientRect();
-
-          if (
-              touch.clientX >= imgRect.left && touch.clientX <= imgRect.right &&
-              touch.clientY >= imgRect.top && touch.clientY <= imgRect.bottom
-          ) {
-              panning = true;
-              startX = e.touches[0].clientX - translateX;
-              startY = e.touches[0].clientY - translateY;
-              img.style.cursor = 'grabbing';
-          }
-      }
-  });
-
-  img.addEventListener('touchmove', (e) => {
-      if (e.touches.length === 2 && pinchToZoomActive) {
-          e.preventDefault(); // Previeni lo scrolling durante il pinch
-
-          const currentDistance = getDistance(e.touches);
-          const scaleChange = currentDistance / initialDistance;
-          currentScale = Math.min(Math.max(1, scaleChange), 3); // Limita lo zoom tra 1x e 3x
-
-          img.style.transform = `scale(${currentScale}) translate(${translateX}px, ${translateY}px)`;
-      } else if (e.touches.length === 1 && panning) {
-          translateX = e.touches[0].clientX - startX;
-          translateY = e.touches[0].clientY - startY;
-
-          limitTranslation();
-
-          img.style.transform = `scale(${currentScale}) translate(${translateX}px, ${translateY}px)`;
-      }
-  });
-
-  img.addEventListener('touchend', (e) => {
-      if (e.touches.length < 2) {
-          initialDistance = 0;
-          pinchToZoomActive = false;
-      }
-      if (e.touches.length === 0) {
-          panning = false;
-          img.style.cursor = 'grab';
-      }
-  });
-
-  img.addEventListener('touchcancel', (e) => {
-      panning = false;
-      pinchToZoomActive = false;
-      img.style.cursor = 'grab';
-  });
-
-  img.addEventListener('click', (e) => {
+  img.addEventListener('dblclick', (e) => {
       const rect = img.getBoundingClientRect();
       const clickX = e.clientX - rect.left;
       const clickY = e.clientY - rect.top;
 
-      if (!isZoomed) {
-          zoomCenterX = clickX;
-          zoomCenterY = clickY;
-          translateX = (container.clientWidth / 2 - clickX) / currentScale;
-          translateY = (container.clientHeight / 2 - clickY) / currentScale;
-          currentScale = 2; // Example zoom scale
-      } else {
-          translateX = 0;
-          translateY = 0;
-          currentScale = 1;
-      }
+      // Check if the click is inside the image
+      if (
+          clickX >= 0 && clickX <= rect.width &&
+          clickY >= 0 && clickY <= rect.height
+      ) {
+          if (!isZoomed) {
+              // Calculate the new translation to center the clicked point
+              translateX = (container.clientWidth / 2 - clickX) / currentScale;
+              translateY = (container.clientHeight / 2 - clickY) / currentScale;
+              currentScale = 2; // Example zoom scale
+          } else {
+              // Reset translation and scale to original
+              translateX = 0;
+              translateY = 0;
+              currentScale = 1;
+          }
 
-      img.style.transform = `scale(${currentScale}) translate(${translateX}px, ${translateY}px)`;
-      isZoomed = !isZoomed;
+          img.style.transform = `scale(${currentScale}) translate(${translateX}px, ${translateY}px)`;
+          isZoomed = !isZoomed; // Toggle zoom state
+      }
   });
 });
