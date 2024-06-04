@@ -25,7 +25,7 @@
   }
   .barrone
   {
-    padding-bottom: 500px;
+    padding-bottom: 450px;
   }
   .responsive
   {
@@ -359,4 +359,31 @@ label {
   transform-origin: center center;
   transition: transform 0.1s ease;
   cursor: grab;
+}
+
+.immagini-paesi
+{
+  display: flex;
+  direction: row;
+  gap: 20px;
+}
+#carousel-container {
+  position: relative;
+  width: 80%;
+  max-width: 600px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 15px;
+}
+.carousel-image {
+  width: 100%;
+  height: 450px;
+  object-fit: cover;
+  border-radius: 15px;
+  position: absolute;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+.carousel-image.active {
+  opacity: 1;
 }

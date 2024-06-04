@@ -38,6 +38,10 @@ function paesi_onclick(p)
   document.getElementById("container-mappa").style.display = "none";
   document.getElementById("informazioni").style.display = "block";
   document.getElementById("footer").style.display = "none";
+  for(var x = 1; x <= 3; x++)
+  {
+    document.getElementById("immagine" + x).src = "paesi/" + p + "/" + x + ".jpg";
+  }
   var url = 'paesi/' + p + '/' + p + '.txt';
     $(document).ready(function(){
       $.ajax({
@@ -50,7 +54,14 @@ function paesi_onclick(p)
               console.error('Errore durante il recupero del file:', status, error);
           }
       });
-  });
+  })
+  setTimeout(function(){
+    var footer = document.getElementById("footer1");
+    var footerTop = footer.getBoundingClientRect().top + window.scrollY;
+    document.getElementById("max-height").style.height = footerTop + 100 + "px";
+    document.getElementById("max-height1").style.height = footerTop + 100 + "px";
+}, 200);
+
 }
 
 function backToMap() {
@@ -64,6 +75,12 @@ function backToMap() {
   document.getElementById("informazioni").style.display = "none";
   document.getElementById("footer").style.display = "block";
   immagine_paese.style.display = "none";
+  setTimeout(function(){
+    var footer = document.getElementById("footer");
+    var footerTop = footer.getBoundingClientRect().top + window.scrollY;
+    document.getElementById("max-height").style.height = footerTop + 100 + "px";
+    document.getElementById("max-height1").style.height = footerTop + 100 + "px";
+}, 200);
 }
 
 
@@ -175,4 +192,23 @@ document.addEventListener('DOMContentLoaded', (event) => {
           isZoomed = !isZoomed; // Toggle zoom state
       }
   });
+});
+
+document.addEventListener('DOMContentLoaded', (event) => {
+  const images = document.querySelectorAll('.carousel-image');
+  let currentIndex = 0;
+
+  function showNextImage() {
+      // Hide current image
+      images[currentIndex].classList.remove('active');
+
+      // Calculate the next index
+      currentIndex = (currentIndex + 1) % images.length;
+
+      // Show the next image
+      images[currentIndex].classList.add('active');
+  }
+
+  // Set the interval for changing images (e.g., every 3 seconds)
+  setInterval(showNextImage, 3000);
 });
