@@ -152,6 +152,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
   let translateY = 0;
   let panning = false;
   let pinchToZoomActive = false;
+  let isZoomed = false; // Track zoom state
+  let zoomCenterX = 0;
+  let zoomCenterY = 0;
 
   function getDistance(touches) {
       const [touch1, touch2] = touches;
@@ -238,5 +241,26 @@ document.addEventListener('DOMContentLoaded', (event) => {
       panning = false;
       pinchToZoomActive = false;
       img.style.cursor = 'grab';
+  });
+
+  img.addEventListener('click', (e) => {
+      const rect = img.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const clickY = e.clientY - rect.top;
+
+      if (!isZoomed) {
+          zoomCenterX = clickX;
+          zoomCenterY = clickY;
+          translateX = (container.clientWidth / 2 - clickX) / currentScale;
+          translateY = (container.clientHeight / 2 - clickY) / currentScale;
+          currentScale = 2; // Example zoom scale
+      } else {
+          translateX = 0;
+          translateY = 0;
+          currentScale = 1;
+      }
+
+      img.style.transform = `scale(${currentScale}) translate(${translateX}px, ${translateY}px)`;
+      isZoomed = !isZoomed;
   });
 });
