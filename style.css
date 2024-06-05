@@ -97,10 +97,7 @@
     padding-top: 70vh;
   }
 
-  .immagini-paesi
-  {
-    flex-direction: column;
-  }
+ 
 }
 @media only screen and (max-height: 813px) and (max-width: 575px) {
   .home
