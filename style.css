@@ -65,6 +65,7 @@
     max-width: 200px !important;
     max-height: 250px !important;
   }
+
   .responsive
   {
     height: 100%;
@@ -96,6 +97,10 @@
     padding-top: 70vh;
   }
 
+  .immagini-paesi
+  {
+    flex-direction: column;
+  }
 }
 @media only screen and (max-height: 813px) and (max-width: 575px) {
   .home
